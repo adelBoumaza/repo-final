@@ -1,0 +1,14 @@
+{
+  "/API/SQLI/**": {
+    "target": "https://spring-boot-app-boumaza-adel.cfapps.io",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/oauth/**": {
+    "target": "https://spring-boot-app-boumaza-adel.cfapps.io",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

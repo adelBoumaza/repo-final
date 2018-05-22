@@ -1,0 +1,53 @@
+<app-header></app-header>
+<br><br><br>
+<!-- *ngIf="item.importation">{{item.taxe +5}}  else *ngIf="!item.importation">{{item.taxe}}-->
+
+<div class="row" style="width: 95%;margin: auto">
+  <div class="col-sm-6 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+          <table class="table table-bordred">
+            <thead>
+              <tr>
+                <th>Nom produit</th>
+                <th>Prix</th>
+                <th>Taxes Total</th>
+                <th>Quantité</th>
+                <th>Ajouter au panier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of produits;let i = index;"  [ngClass]="{'OK': item.checked}">
+                <td>{{item.nomProduit}}</td>
+                <td>{{item.prixProduit * item.quantite}}€</td>
+                <td><span *ngIf="item.importation">{{item.taxe +5}}%</span><span *ngIf="!item.importation">{{item.taxe}}%</span></td>
+                <td><input disabled ="{{item.checked}}" style="width: 50px!important" type="number" min="1" name="quantite" [(ngModel)]="item.quantite"></td>
+                <td>
+                    <input  (click)="removeToPanier(item)" [ngClass]="{'checked': item.checked,'inChecked': !item.checked}" style="width: 50px!important;height: 30px!important;cursor: pointer;text-align: center;margin: auto" type="checkbox"  name="check" [(ngModel)]="item.checked">
+                    <button [ngClass]="{'checked': !item.checked,'inChecked': item.checked}" class="btn btn-primary" (click)="addToPanier(item)" style="text-align: center;margin: auto;">+</button>
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+    </div>
+  </div> 
+  <div class="col-sm-6 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <h3 style="text-align: center">Bienvenue</h3>
+              <div *ngFor="let item of panier">
+                      <div>
+                          <p>{{item.quantite}} {{item.nomProduit}} à {{item.prixProduit}}€ : {{item.prixUnitaireTTC}}€ TTC</p>
+                      </div>
+              </div>
+              <hr>
+              <p *ngIf="total !== 0" >Total : {{total}}€ TTC</p>
+              <p *ngIf="total === 0" style="color: red;text-align: center;">Votre panier est vide (-_-)</p>
+        </div>                                               
+        <br>
+    </div>
+  </div>                    
+</div>

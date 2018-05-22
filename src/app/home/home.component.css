@@ -1,0 +1,23 @@
+.OK{
+    background: crimson;
+    color: white;
+}
+.checked
+{
+    display: block;
+}
+.inChecked
+{
+    display: none;
+}
+
+.table td, .table th {
+    padding: 2px; 
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+/*
+
+
+*/
