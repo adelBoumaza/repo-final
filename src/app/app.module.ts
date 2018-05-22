@@ -10,6 +10,7 @@ import { ApiService } from './service/api.service';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeService } from './home/home.service';
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     routing
   ],
   providers: [

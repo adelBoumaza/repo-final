@@ -39,9 +39,9 @@
         <div class="card-body">
             <h3 style="text-align: center">Bienvenue</h3>
               <div *ngFor="let item of panier">
-                      <div>
-                          <p>{{item.quantite}} {{item.nomProduit}} à {{item.prixProduit}}€ : {{item.prixUnitaireTTC}}€ TTC</p>
-                      </div>
+                  <div>
+                      <p>{{item.quantite}} {{item.nomProduit}} à {{item.prixProduit}}€ : {{item.prixUnitaireTTC}}€ TTC</p>
+                  </div>
               </div>
               <hr>
               <p *ngIf="total !== 0" >Total : {{total}}€ TTC</p>

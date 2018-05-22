@@ -4,40 +4,34 @@ import { ApiService } from '../service/api.service';
 import { error } from 'selenium-webdriver';
 import { Router } from '@angular/router';
 
-
 @Component({
     selector : 'app-login',
     templateUrl : 'login.component.html',
     styleUrls : ['login.component.css']
 
 })
-export class LoginComponent implements OnInit
-{
+export class LoginComponent implements OnInit {
 
-    private user: User;
-    private success: string;
+    user: User;
+    success: string;
 
     constructor(private apiService: ApiService,
-         private _router: Router
-    )
-    {
+                private _router: Router) {
     }
 
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         this.user = new User({username: 'Adel', password: 'Adel'});
     }
 
 
-    doLogin()
-    {
+    doLogin() {
         this.apiService.login(this.user)
         .subscribe(response => {
             localStorage.setItem('token', `${response.token_type} ${response.access_token}`);
             console.log('localStorage' + localStorage.getItem('token'));
             this._router.navigateByUrl('/home');
-        }, error => {
-           console.log('error ' + error);
+        }, (err) => {
+           console.log('error ' + err);
         });
 
         console.log('end' + this.user);

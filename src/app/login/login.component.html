@@ -8,17 +8,10 @@
         <section class="login-form">
           <form role="login" (ngSubmit)="doLogin()">
             <h3 style="margin: auto;text-align: center">Accès sécurisé</h3>
-            <input [(ngModel)] = "user.userName" type="text" name="username" placeholder="username" required class="form-control input-lg"  />
-            
+            <input [(ngModel)] = "user.userName" type="text" name="username" placeholder="username" required class="form-control input-lg" />
             <input [(ngModel)] = "user.password" name="password" type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
-            
-            
             <div class="pwstrength_viewport_progress"></div>
-            
-            
             <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Connexion</button>
-           
-            
           </form>
         </section>  
         </div>

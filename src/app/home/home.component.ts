@@ -9,14 +9,15 @@ import { Produit } from './produit.model';
 })
 export class HomeComponent implements OnInit {
 
-    private produits: any;
-    private quantite: Number= 0;
-    private panier: Array<Produit> = new Array<Produit>();
-    private total = 0;
-    constructor(private homeService: HomeService) { }
+    produits: any;
+    quantite: Number = 0;
+    total = 0;
+    panier: Array<Produit> = new Array<Produit>();
 
-    ngOnInit(): void
-    {
+    constructor(private homeService: HomeService) {
+    }
+
+    ngOnInit(): void {
         this.homeService.searchAll()
          .subscribe(resp => {
             this.produits = resp;
@@ -26,12 +27,10 @@ export class HomeComponent implements OnInit {
          });
     }
 
-    addToPanier(item)
-    {
+    addToPanier(item) {
         console.log(item);
           this.produits.forEach(element => {
-              if (item.id === element.id)
-              {
+              if (item.id === element.id) {
                     this.homeService.calculate(item)
                     .subscribe(resp => {
                             element.prixUnitaireTTC = resp;
@@ -45,27 +44,20 @@ export class HomeComponent implements OnInit {
           });
     }
 
-    removeToPanier(item)
-    {
+    removeToPanier(item) {
         this.produits.forEach((element) => {
-            if (item.id === element.id)
-            {
+            if (item.id === element.id) {
                 this.total = this.total - element.prixUnitaireTTC;
                 element.quantite = 1;
                 const index = this.panier.indexOf(item);
                 this.panier.splice(index, 1);
             }
-            if(this.panier.length === 0)
-            {
+            if (this.panier.length === 0) {
                 this.total = 0;
             }
         });
     }
 
-
-
-    displayPanier()
-    {
-         
+    displayPanier() {
     }
 }
