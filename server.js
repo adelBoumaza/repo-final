@@ -17,7 +17,7 @@ app.all('/oauth/**', function(req, res) {
     apiProxy.web(req, res, { target: remoteUrl });
 });
 
-app.all('/api/v1/**', function(req, res) {
+app.all('/API/SQLI/**', function(req, res) {
     console.log('redirecting proxy to server');
     apiProxy.web(req, res, { target: remoteUrl });
 });
