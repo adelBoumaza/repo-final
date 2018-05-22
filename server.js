@@ -6,7 +6,7 @@ var httpProxy   = require('http-proxy');
 var apiProxy    = httpProxy.createProxyServer({ https: true, changeOrigin: true, secure: false });
 
 // Remote url
-const remoteUrl = 'spring-boot-app-boumaza-adel.cfapps.io';
+const remoteUrl = 'http://spring-boot-app-boumaza-adel.cfapps.io';
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/tuto2'));
