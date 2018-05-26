@@ -52,18 +52,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of films;let i = index;">
+            <tr *ngFor="let item of films  | paginate: { itemsPerPage: 10, currentPage: firstPage} ;let i = index;">
               <td>{{item.nomFilm}}</td>
               <td>{{item.categorie}}</td>
               <td>{{item.prix}}</td>
               <td>{{item.date}}</td>
-              <td style="padding: 0!important;"> <rating [(ngModel)]="item.note"  [readonly]="true"
-                [max]="5"
-                [titles]="['film faible', 'film intermédiaire', 'bon film', 'très bon film', 'excellent film']">
+              <td style="padding: 0!important;"> 
+                <rating [(ngModel)]="item.note"  [readonly]="true"
+                  [max]="5">
                </rating></td>
             </tr>
           </tbody>
         </table>
+        <pagination-controls class="my-pagination" (pageChange)="firstPage = $event"></pagination-controls>
       </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilmComponent } from './film/film.component';
 import { FilmService } from './film/film.service';
 import {RatingModule} from 'ngx-rating';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {RatingModule} from 'ngx-rating';
     HttpModule,
     HttpClientModule,
     routing,
-    RatingModule
+    RatingModule,
+    NgxPaginationModule
   ],
   providers: [
     ApiService,
