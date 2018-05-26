@@ -11,24 +11,30 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { HomeService } from './home/home.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FilmComponent } from './film/film.component';
+import { FilmService } from './film/film.service';
+import {RatingModule} from 'ngx-rating';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    FilmComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     HttpClientModule,
-    routing
+    routing,
+    RatingModule
   ],
   providers: [
     ApiService,
-    HomeService
+    HomeService,
+    FilmService
   ],
   bootstrap: [AppComponent]
 })

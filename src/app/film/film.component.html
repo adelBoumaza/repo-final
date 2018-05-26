@@ -1,0 +1,70 @@
+<app-header></app-header>
+<br><br><br>
+
+<div class="container card">
+    <form class="card-body" #categorieForm="ngForm" (ngSubmit)="saveFilm()">
+        <div class="form-row">
+          <div class="col-md-6">
+            <input type="text" name="nomFilm" required class="form-control" [(ngModel)]="film.nomFilm" placeholder="nom du film">
+          </div>
+          <div class="col-md-6">
+            <select class="custom-select form-control form-control-sm" required  [(ngModel)]="film.categorie" name="gategorie">
+              <option *ngFor="let c of categories" [ngValue]="c" >{{c}}</option>
+            </select>
+          </div>
+          <br><br/>
+          <div class="col-md-6">
+            <input type="date" name="date" required class="form-control" [(ngModel)]="film.date" placeholder="date de film">
+          </div>
+          <div class="col-md-6">
+            <input type="text" required name="prix" class="form-control" [(ngModel)]="film.prix" placeholder="prix">
+          </div>
+          <br><br/>
+          <div class="col-md-6">
+            <input type="text" required name="lieu" class="form-control" [(ngModel)]="film.lieu" placeholder="lieu">
+          </div>
+          <div class="col-md-6">
+              <rating [(ngModel)]="film.note" name="note" 
+              [max]="5" [required]="true"
+              [titles]="['film faible', 'film intermédiaire', 'bon film', 'très bon film', 'excellent film']">
+             </rating>
+          </div>
+          <br><br/>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-sm btn-block" [disabled]="!categorieForm.valid">Envoyer</button>
+        </div>
+        </div>
+    </form>
+    <br><br/>
+</div>
+<br><br/>
+<div class="container card">
+  <div class="card-body">
+      <div class="form-row">
+        <table class="table table-bordred">
+          <thead>
+            <tr>
+              <th>Nom du film</th>
+              <th>Categorie</th>
+              <th>Prix</th>
+              <th>date</th>
+              <th>note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of films;let i = index;">
+              <td>{{item.nomFilm}}</td>
+              <td>{{item.categorie}}</td>
+              <td>{{item.prix}}</td>
+              <td>{{item.date}}</td>
+              <td style="padding: 0!important;"> <rating [(ngModel)]="item.note"  [readonly]="true"
+                [max]="5"
+                [titles]="['film faible', 'film intermédiaire', 'bon film', 'très bon film', 'excellent film']">
+               </rating></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+  <br><br/>
