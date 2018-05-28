@@ -17,7 +17,7 @@
             <input type="date" name="date" required class="form-control" [(ngModel)]="film.date" placeholder="date de film">
           </div>
           <div class="col-md-6">
-            <input type="text" required name="prix" class="form-control" [(ngModel)]="film.prix" placeholder="prix">
+            <input type="number" min="1" required name="prix" class="form-control" [(ngModel)]="film.prix" placeholder="prix en €">
           </div>
           <br><br/>
           <div class="col-md-6">
@@ -30,11 +30,25 @@
              </rating>
           </div>
           <br><br/>
-          <div class="col-md-6">
-            <button class="btn btn-primary btn-sm btn-block" [disabled]="!categorieForm.valid">Envoyer</button>
-        </div>
+          <div class="col-md-1">
+              <select class="custom-select form-control form-control-sm" required  [(ngModel)]="film.durree" name="durree">
+                <option *ngFor="let d of durrees" [ngValue]="d" >{{d}}</option>
+              </select>
+              <span>Minutes</span>
+          </div>
+          <div class="col-md-3">
+            <button style="cursor: pointer;" [ngClass]="{'btn btn-primary': btnUpdate,'btn btn-danger': !btnUpdate}" class="btn-sm btn-block" [disabled]="!categorieForm.valid">
+                 <span *ngIf="!btnUpdate">Envoyer</span>
+                 <span *ngIf="btnUpdate">Modifier</span>
+            </button>
+          </div>
         </div>
     </form>
+    <div class="col-md-2" style="position: absolute;top: 164px;left: 390px">
+        <button style="cursor: pointer;" class="btn-sm btn-block btn-default" (click)="reset()" >
+             <span>Reset</span>
+        </button>
+    </div>
     <br><br/>
 </div>
 <br><br/>
@@ -46,21 +60,26 @@
             <tr>
               <th>Nom du film</th>
               <th>Categorie</th>
-              <th>Prix</th>
-              <th>date</th>
-              <th>note</th>
+              <th>Prix </th>
+              <th>Date</th>
+              <th>Note</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of films  | paginate: { itemsPerPage: 10, currentPage: firstPage} ;let i = index;">
               <td>{{item.nomFilm}}</td>
               <td>{{item.categorie}}</td>
-              <td>{{item.prix}}</td>
-              <td>{{item.date}}</td>
+              <td>{{item.prix}}€</td>
+              <td>{{item.date | date : 'dd/MM/yyyy'}}</td>
               <td style="padding: 0!important;"> 
                 <rating [(ngModel)]="item.note"  [readonly]="true"
                   [max]="5">
-               </rating></td>
+               </rating>
+              </td>
+              <td>
+                <button class="btn btn-primary btn-sm" (click)="editer(item)">Editer</button>
+              </td>
             </tr>
           </tbody>
         </table>
